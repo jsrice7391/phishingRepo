@@ -1,0 +1,31 @@
+{
+  "name": "justin-rice-app",
+  "version": "1.0.0",
+  "description": "Mine",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "seed": "node scripts/seedDB.js",
+    "test": "npm test",
+    "installDeps": "yarn && cd client && yarn"
+  },
+  "author": "justin",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "3.2.0",
+    "chai-http": "1.0.0",
+    "concurrently": "^3.5.1",
+    "mocha": "2.3.1",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.7",
+    "react-bootstrap": "^0.32.1"
+  }
+}
