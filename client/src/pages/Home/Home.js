@@ -4,7 +4,8 @@ import Toolbar, { ToolbarTitle } from "material-ui/Toolbar";
 import { ToolbarGroup } from "material-ui/Toolbar";
 import { FontIcon } from "material-ui";
 import {Grid, Row, Col} from "react-bootstrap";
-import "./home.css"
+import "./home.css";
+import SearchBar from "material-ui-search-bar";
 import moment from "moment";
 import {
   Card,
@@ -42,7 +43,8 @@ class Home extends Component {
   state = {
     date: moment(Date.now()).format("MMM Do"),
     users: users,
-    username: "Jus"
+    username: "Jus",
+    searched: false
   };
 
   handleToggle = (event, toggled) => {
@@ -62,21 +64,18 @@ class Home extends Component {
             <ToolbarTitle text="Phishing Email" />
           </ToolbarGroup>
           <ToolbarGroup>
-            <FontIcon className="muidocs-icon-custom-sort" />
-            <FontIcon className="muidocs-icon-custom-sort" />
-            <FontIcon className="muidocs-icon-custom-sort" />
+            <SearchBar onChange={() => console.log("onChange")} onRequestSearch={() => console.log("onRequestSearch")} style={{ margin: "0 auto", maxWidth: 800 }} />
           </ToolbarGroup>
         </Toolbar>
-        <Grid>
-          <br />
+        <div className="main">
           <Row className="show-grid">
             <Col xs={12} md={6}>
               <Card>
                 <CardTitle title="Summary" subtitle={this.state.date} />
                 <Row>
                   <Col md={4} sm={6} xs={12}>
-                    <CardText>Testing code</CardText>
-                    <CardTitle className="highlight" title={this.state.username} />
+                    <CardText>User Count</CardText>
+                    <CardTitle className="highlight" title={this.state.users.length} />
                   </Col>
                   <Col md={4} xs={12}>
                     <CardText>Testing code</CardText>
@@ -91,43 +90,47 @@ class Home extends Component {
             </Col>
             <Col xs={12} md={6}>
               <Card>
-                <CardTitle title="Summary" subtitle={this.state.date} />
-        
+                <CardTitle title="Generate Report" subtitle={this.state.date} />
+                <Row>
+                <Col md={6} xs={12}>
+                
+                </Col>
+                </Row>
               </Card>
             </Col>
           </Row>
-          <br/>
+          <br />
 
           <Card>
-          <Table height="300px" fixedHeader={true} fixedFooter={true} selectable={true} multiSelectable={true}>
-            <TableHeader displaySelectAll={false} adjustForCheckbox={false} enableSelectAll={false}>
-              <TableRow>
-                <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{ textAlign: "center" }}>
-                  {" "}
-                  Phishing Emaillist
-                </TableHeaderColumn>
-              </TableRow>
-              <TableRow>
-                <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
-                <TableHeaderColumn tooltip="The Name">
-                  {" "}
-                  Name
-                </TableHeaderColumn>
-                <TableHeaderColumn tooltip="The Status">
-                  Status
-                </TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody displayRowCheckbox={false} deselectOnClickaway={true} showRowHover={true} stripedRows={false}>
-              {this.state.users.map((row, index) => <TableRow key={index}>
-                  <TableRowColumn>{index}</TableRowColumn>
-                  <TableRowColumn>{row.name}</TableRowColumn>
-                  <TableRowColumn>{row.status.toString()}</TableRowColumn>
-                </TableRow>)}
-            </TableBody>
-          </Table>
+            <Table height="300px" fixedHeader={true} fixedFooter={true} selectable={true} multiSelectable={true}>
+              <TableHeader displaySelectAll={false} adjustForCheckbox={false} enableSelectAll={false}>
+                <TableRow>
+                  <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{ textAlign: "center" }}>
+                    {" "}
+                    Phishing Emaillist
+                  </TableHeaderColumn>
+                </TableRow>
+                <TableRow>
+                  <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
+                  <TableHeaderColumn tooltip="The Name">
+                    {" "}
+                    Name
+                  </TableHeaderColumn>
+                  <TableHeaderColumn tooltip="The Status">
+                    Status
+                  </TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false} deselectOnClickaway={true} showRowHover={true} stripedRows={false}>
+                {this.state.users.map((row, index) => <TableRow key={index}>
+                    <TableRowColumn>{index}</TableRowColumn>
+                    <TableRowColumn>{row.name}</TableRowColumn>
+                    <TableRowColumn>{row.status.toString()}</TableRowColumn>
+                  </TableRow>)}
+              </TableBody>
+            </Table>
           </Card>
-        </Grid>
+          </div>
       </MuiThemeProvider>;
   }
 }
