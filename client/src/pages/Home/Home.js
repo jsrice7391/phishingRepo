@@ -73,12 +73,6 @@ class Home extends Component {
             <Col xs={12} md={6}>
               <Card>
                 <CardTitle title="Summary" subtitle={this.state.date} />
-                <p> More people</p>
-              </Card>
-            </Col>
-            <Col xs={12} md={6}>
-              <Card>
-                <CardTitle title="Summary" subtitle={this.state.date} />
                 <Row>
                   <Col md={4} sm={6} xs={12}>
                     <CardText>Testing code</CardText>
@@ -95,8 +89,16 @@ class Home extends Component {
                 </Row>
               </Card>
             </Col>
+            <Col xs={12} md={6}>
+              <Card>
+                <CardTitle title="Summary" subtitle={this.state.date} />
+        
+              </Card>
+            </Col>
           </Row>
+          <br/>
 
+          <Card>
           <Table height="300px" fixedHeader={true} fixedFooter={true} selectable={true} multiSelectable={true}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false} enableSelectAll={false}>
               <TableRow>
@@ -124,6 +126,7 @@ class Home extends Component {
                 </TableRow>)}
             </TableBody>
           </Table>
+          </Card>
         </Grid>
       </MuiThemeProvider>;
   }
