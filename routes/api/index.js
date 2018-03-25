@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const ItemRoutes = require("./first");
+const userRoutes = require("./first");
 
 // Item routes
-router.use("/first", ItemRoutes);
+router.use("/users", userRoutes);
 
 module.exports = router;

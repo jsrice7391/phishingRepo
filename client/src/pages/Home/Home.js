@@ -3,6 +3,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Toolbar, { ToolbarTitle } from "material-ui/Toolbar";
 import { ToolbarGroup } from "material-ui/Toolbar";
 import { FontIcon } from "material-ui";
+import API from "../../utils/API";
 import {Grid, Row, Col} from "react-bootstrap";
 import "./home.css";
 import SearchBar from "material-ui-search-bar";
@@ -26,23 +27,15 @@ import {
 } from "material-ui/Table";
 import TextField from "material-ui/TextField";
 import Toggle from "material-ui/Toggle";
+import { get } from "http";
 
-const users = [
-    {
-        name: "Justin",
-        status: false
-    },
-    {
-        name:"Vianca",
-        status: true
-    }
-]
+
 
 
 class Home extends Component {
   state = {
     date: moment(Date.now()).format("MMM Do"),
-    users: users,
+    users: [],
     username: "Jus",
     searched: false
   };
@@ -55,6 +48,17 @@ class Home extends Component {
 
   handleChange = event => {
     this.setState({ height: event.target.value });
+  };
+
+  componentWillMount(){
+    this.getAll();
+
+  }
+
+  getAll = () =>{
+    API.getAll().then(res =>{
+      this.setState({users:res.data});
+    })
   };
 
   render() {
@@ -92,9 +96,7 @@ class Home extends Component {
               <Card>
                 <CardTitle title="Generate Report" subtitle={this.state.date} />
                 <Row>
-                <Col md={6} xs={12}>
-                
-                </Col>
+                  <Col md={6} xs={12} />
                 </Row>
               </Card>
             </Col>
@@ -112,25 +114,41 @@ class Home extends Component {
                 </TableRow>
                 <TableRow>
                   <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
-                  <TableHeaderColumn tooltip="The Name">
-                    {" "}
-                    Name
+                  <TableHeaderColumn tooltip="Name of Receiver">
+                    {""}
+                    To
                   </TableHeaderColumn>
-                  <TableHeaderColumn tooltip="The Status">
-                    Status
+                  <TableHeaderColumn tooltip="Name of Receiver">
+                    From
+                  </TableHeaderColumn>
+                  <TableHeaderColumn tooltip="Name of Receiver">
+                    Subject
+                  </TableHeaderColumn>
+                  <TableHeaderColumn tooltip="Name of Receiver">
+                    Read
+                  </TableHeaderColumn>
+                  <TableHeaderColumn tooltip="Name of Receiver">
+                    Location
+                  </TableHeaderColumn>
+                  <TableHeaderColumn tooltip="Name of Receiver">
+                    Date
                   </TableHeaderColumn>
                 </TableRow>
               </TableHeader>
               <TableBody displayRowCheckbox={false} deselectOnClickaway={true} showRowHover={true} stripedRows={false}>
                 {this.state.users.map((row, index) => <TableRow key={index}>
                     <TableRowColumn>{index}</TableRowColumn>
-                    <TableRowColumn>{row.name}</TableRowColumn>
-                    <TableRowColumn>{row.status.toString()}</TableRowColumn>
+                    <TableRowColumn>{row.user_from}</TableRowColumn>
+                    <TableRowColumn>{row.user_to}</TableRowColumn>
+                    <TableRowColumn>{row.location}</TableRowColumn>
+                    <TableRowColumn>{row.read_stat}</TableRowColumn>
+                    <TableRowColumn>{row.location}</TableRowColumn>
+                    <TableRowColumn>{row.completed}</TableRowColumn>
                   </TableRow>)}
               </TableBody>
             </Table>
           </Card>
-          </div>
+        </div>
       </MuiThemeProvider>;
   }
 }

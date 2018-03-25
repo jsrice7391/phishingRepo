@@ -7,6 +7,8 @@ module.exports = function(sequelize, DataTypes) {
     read_stat: DataTypes.BOOLEAN,
     location: DataTypes.STRING,
     completed: DataTypes.DATE 
+  },{
+    timestamps:false
   });
   return Burger;
 };
