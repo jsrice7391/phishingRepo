@@ -13,7 +13,7 @@ module.exports = {
     },
     search: (req,res) =>{
         console.log(req.query.search)
-        db.sequelize.query(`SELECT * FROM users WHERE user_from LIKE '%${req.query.search}%';`, {type: sequelize.QueryTypes.SELECT})
+        db.sequelize.query(`SELECT * FROM users WHERE user_from LIKE '${req.query.search}%';`, {type: sequelize.QueryTypes.SELECT})
         .then(users =>{
           console.log(users);
           res.json(users)

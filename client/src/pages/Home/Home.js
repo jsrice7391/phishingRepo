@@ -9,7 +9,11 @@ import "./home.css";
 import SearchBar from "material-ui-search-bar";
 import moment from "moment";
 import RaisedButton from "material-ui/RaisedButton";
-import Textfield from "material-ui/TextField"
+import Textfield from "material-ui/TextField";
+import DropDownMenu from "material-ui/DropDownMenu";
+import MenuItem from "material-ui/MenuItem";
+import DatePicker from "material-ui/DatePicker";
+import {Tabs, Tab} from "material-ui/Tabs";
 import {
   Card,
   CardActions,
@@ -36,11 +40,12 @@ import { get } from "http";
 
 class Home extends Component {
   state = {
-    date: moment(Date.now()).format("MMM Do"),
+    date: moment(Date.now()).format("MMM Do hh:mm"),
     users: [],
     username: "Jus",
     searched: false,
-    search: ""
+    search: "",
+    searchParam: ""
   };
 
   handleToggle = (event, toggled) => {
@@ -125,8 +130,24 @@ class Home extends Component {
               <Card>
                 <CardTitle title="Generate Report" subtitle={this.state.date} />
                 <Row>
-                  <Col md={6} xs={12}>
+                  <Col md={12} xs={12}>
                     <Textfield floatingLabelText="Search" value={this.state.search} name="search" onChange={this.handleInputChange} />
+                    <DropDownMenu name="searchParam" value="Search Field" onChange={this.handleInputChange}>
+                      <MenuItem value="From" primaryText="From" />
+                      <MenuItem value="To" primaryText="To" />
+                      <MenuItem value="Subject" primaryText="Subject" />
+                      <MenuItem value="Location" primaryText="Location" />
+                    </DropDownMenu>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} xs={12}>
+                    <DatePicker name="startDate" autoOk={true} floatingLabelText="startDate" onChange={(x, event) => {
+                        console.log(event);
+                      }} />
+                    <DatePicker name="startDate" autoOk={true} floatingLabelText="startDate" onChange={(x, event) => {
+                        console.log(event);
+                      }} />
                     {this.renderSearchedLogic()}
                   </Col>
                 </Row>
@@ -134,55 +155,66 @@ class Home extends Component {
             </Col>
           </Row>
           <br />
-
           <Card>
-            <Table height="300px" fixedHeader={true} fixedFooter={true} selectable={true} multiSelectable={true}>
-              <TableHeader displaySelectAll={false} adjustForCheckbox={false} enableSelectAll={false}>
-                <TableRow>
-                  <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{ textAlign: "center" }}>
-                    {" "}
-                    Phishing Emaillist
-                  </TableHeaderColumn>
-                </TableRow>
-                <TableRow>
-                  <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
-                  <TableHeaderColumn tooltip="Name of Receiver">
-                    {""}
-                    To
-                  </TableHeaderColumn>
-                  <TableHeaderColumn tooltip="Name of Receiver">
-                    From
-                  </TableHeaderColumn>
-                  <TableHeaderColumn tooltip="Name of Receiver">
-                    Subject
-                  </TableHeaderColumn>
-                  <TableHeaderColumn tooltip="Name of Receiver">
-                    Read
-                  </TableHeaderColumn>
-                  <TableHeaderColumn tooltip="Name of Receiver">
-                    Location
-                  </TableHeaderColumn>
-                  <TableHeaderColumn tooltip="Name of Receiver">
-                    Date
-                  </TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody displayRowCheckbox={false} deselectOnClickaway={true} showRowHover={true} stripedRows={false}>
-                {this.state.users.length ? this.state.users.map(
-                    (row, index) => (
-                      <TableRow key={index}>
-                        <TableRowColumn>{index}</TableRowColumn>
-                        <TableRowColumn>{row.user_from}</TableRowColumn>
-                        <TableRowColumn>{row.user_to}</TableRowColumn>
-                        <TableRowColumn>{row.location}</TableRowColumn>
-                        <TableRowColumn>{row.read_stat}</TableRowColumn>
-                        <TableRowColumn>{row.location}</TableRowColumn>
-                        <TableRowColumn>{row.completed}</TableRowColumn>
-                      </TableRow>
-                    )
-                  ) : <h2>No Results Found</h2>}
-              </TableBody>
-            </Table>
+            <Tabs value={this.state.value} onChange={this.handleChange}>
+              <Tab label="Tab A" value="a">
+                <Table height="300px" fixedHeader={true} fixedFooter={true} selectable={true} multiSelectable={true}>
+                  <TableHeader displaySelectAll={false} adjustForCheckbox={false} enableSelectAll={false}>
+                    <TableRow>
+                      <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{ textAlign: "center" }}>
+                        {" "}
+                        Phishing Emaillist
+                      </TableHeaderColumn>
+                    </TableRow>
+                    <TableRow>
+                      <TableHeaderColumn tooltip="The ID">
+                        ID
+                      </TableHeaderColumn>
+                      <TableHeaderColumn tooltip="Name of Receiver">
+                        {""}
+                        To
+                      </TableHeaderColumn>
+                      <TableHeaderColumn tooltip="Name of Receiver">
+                        From
+                      </TableHeaderColumn>
+                      <TableHeaderColumn tooltip="Name of Receiver">
+                        Subject
+                      </TableHeaderColumn>
+                      <TableHeaderColumn tooltip="Name of Receiver">
+                        Read
+                      </TableHeaderColumn>
+                      <TableHeaderColumn tooltip="Name of Receiver">
+                        Location
+                      </TableHeaderColumn>
+                      <TableHeaderColumn tooltip="Name of Receiver">
+                        Date
+                      </TableHeaderColumn>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody displayRowCheckbox={false} deselectOnClickaway={true} showRowHover={true} stripedRows={false}>
+                    {this.state.users.length ? this.state.users.map(
+                        (row, index) => (
+                          <TableRow key={index}>
+                            <TableRowColumn>{index}</TableRowColumn>
+                            <TableRowColumn>{row.user_from}</TableRowColumn>
+                            <TableRowColumn>{row.user_to}</TableRowColumn>
+                            <TableRowColumn>{row.location}</TableRowColumn>
+                            <TableRowColumn>{row.read_stat}</TableRowColumn>
+                            <TableRowColumn>{row.location}</TableRowColumn>
+                            <TableRowColumn>{row.completed}</TableRowColumn>
+                          </TableRow>
+                        )
+                      ) : <h2>No Results Found</h2>}
+                  </TableBody>
+                </Table>
+              </Tab>
+              <Tab label="Tab B" value="b">
+                <div>
+                  <p>Welcome to tab B</p>
+             
+                </div>
+              </Tab>
+            </Tabs>
           </Card>
         </div>
       </MuiThemeProvider>;
