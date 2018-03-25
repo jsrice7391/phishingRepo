@@ -37,7 +37,8 @@ class Home extends Component {
     date: moment(Date.now()).format("MMM Do"),
     users: [],
     username: "Jus",
-    searched: false
+    searched: false,
+    search: ""
   };
 
   handleToggle = (event, toggled) => {
@@ -46,13 +47,24 @@ class Home extends Component {
     });
   };
 
-  handleChange = event => {
-    this.setState({ height: event.target.value });
+  searchAll = parameter => {
+    API.search({subject:this.state.search}).then(results =>{
+      this.setState({
+        users: results
+      })
+    })
+
+  }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   componentWillMount(){
     this.getAll();
-
   }
 
   getAll = () =>{
@@ -68,7 +80,7 @@ class Home extends Component {
             <ToolbarTitle text="Phishing Email" />
           </ToolbarGroup>
           <ToolbarGroup>
-            <SearchBar onChange={() => console.log("onChange")} onRequestSearch={() => console.log("onRequestSearch")} style={{ margin: "0 auto", maxWidth: 800 }} />
+            <SearchBar value={this.state.search} onChange={value => this.searchAll(value)} onRequestSearch={() => console.log("onRequestSearch")} style={{ margin: "0 auto", maxWidth: 800 }} />
           </ToolbarGroup>
         </Toolbar>
         <div className="main">
@@ -136,7 +148,8 @@ class Home extends Component {
                 </TableRow>
               </TableHeader>
               <TableBody displayRowCheckbox={false} deselectOnClickaway={true} showRowHover={true} stripedRows={false}>
-                {this.state.users.map((row, index) => <TableRow key={index}>
+              {this.state.users.length ? 
+                this.state.users.map((row, index) => <TableRow key={index}>
                     <TableRowColumn>{index}</TableRowColumn>
                     <TableRowColumn>{row.user_from}</TableRowColumn>
                     <TableRowColumn>{row.user_to}</TableRowColumn>
@@ -144,7 +157,8 @@ class Home extends Component {
                     <TableRowColumn>{row.read_stat}</TableRowColumn>
                     <TableRowColumn>{row.location}</TableRowColumn>
                     <TableRowColumn>{row.completed}</TableRowColumn>
-                  </TableRow>)}
+                  </TableRow>)
+                : <h2>No Results Found</h2> }  
               </TableBody>
             </Table>
           </Card>
