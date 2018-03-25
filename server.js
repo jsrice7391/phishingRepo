@@ -14,6 +14,10 @@ app.use(express.static("client/public"));
 app.use(routes);
 
 
+module.exports.app = app;
+
+
+
 // Start the app
 db.sequelize.sync()
     .then(() => app.listen(PORT, function() {
