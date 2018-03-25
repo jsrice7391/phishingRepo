@@ -8,7 +8,7 @@ import {Grid, Row, Col} from "react-bootstrap";
 import "./home.css";
 import SearchBar from "material-ui-search-bar";
 import moment from "moment";
-import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 import Textfield from "material-ui/TextField"
 import {
   Card,
@@ -50,15 +50,14 @@ class Home extends Component {
   };
 
   searchAll = parameter => {
-    API.search({search:this.state.search}).then(results =>{
-      console.log(results.data)
+    API.search({ search: this.state.search }).then(results => {
       this.setState({
-        users: results.data
-      })
-    })
-
-  }
-
+        users: results.data,
+        search: "",
+        searched: true
+      });
+    });
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -67,15 +66,32 @@ class Home extends Component {
     });
   };
 
-  componentWillMount(){
+  componentWillMount() {
     this.getAll();
   }
 
-  getAll = () =>{
-    API.getAll().then(res =>{
-      this.setState({users:res.data});
-    })
+  getAll = () => {
+    API.getAll().then(res => {
+      this.setState({ users: res.data, searched: false });
+    });
   };
+
+  renderSearchedLogic() {
+    if (this.state.searched) {
+      return (
+        <div>
+        <RaisedButton label="Generate CSV"/>
+        <RaisedButton label="Clear" onClick={() => this.getAll()} />
+        </div>
+      );
+    } else {
+      return (
+      <div>
+      <RaisedButton label="Search" onClick={() => this.searchAll()} />
+      </div>
+      )
+    }
+  }
 
   render() {
     return <MuiThemeProvider>
@@ -110,8 +126,8 @@ class Home extends Component {
                 <CardTitle title="Generate Report" subtitle={this.state.date} />
                 <Row>
                   <Col md={6} xs={12}>
-                  <Textfield floatingLabelText="Search" value={this.state.seasrch} name="search" onChange={this.handleInputChange}/>
-                  <FlatButton label="Search" onClick={this.searchAll}/>
+                    <Textfield floatingLabelText="Search" value={this.state.search} name="search" onChange={this.handleInputChange} />
+                    {this.renderSearchedLogic()}
                   </Col>
                 </Row>
               </Card>
@@ -152,17 +168,19 @@ class Home extends Component {
                 </TableRow>
               </TableHeader>
               <TableBody displayRowCheckbox={false} deselectOnClickaway={true} showRowHover={true} stripedRows={false}>
-              {this.state.users.length ? 
-                this.state.users.map((row, index) => <TableRow key={index}>
-                    <TableRowColumn>{index}</TableRowColumn>
-                    <TableRowColumn>{row.user_from}</TableRowColumn>
-                    <TableRowColumn>{row.user_to}</TableRowColumn>
-                    <TableRowColumn>{row.location}</TableRowColumn>
-                    <TableRowColumn>{row.read_stat}</TableRowColumn>
-                    <TableRowColumn>{row.location}</TableRowColumn>
-                    <TableRowColumn>{row.completed}</TableRowColumn>
-                  </TableRow>)
-                : <h2>No Results Found</h2> }  
+                {this.state.users.length ? this.state.users.map(
+                    (row, index) => (
+                      <TableRow key={index}>
+                        <TableRowColumn>{index}</TableRowColumn>
+                        <TableRowColumn>{row.user_from}</TableRowColumn>
+                        <TableRowColumn>{row.user_to}</TableRowColumn>
+                        <TableRowColumn>{row.location}</TableRowColumn>
+                        <TableRowColumn>{row.read_stat}</TableRowColumn>
+                        <TableRowColumn>{row.location}</TableRowColumn>
+                        <TableRowColumn>{row.completed}</TableRowColumn>
+                      </TableRow>
+                    )
+                  ) : <h2>No Results Found</h2>}
               </TableBody>
             </Table>
           </Card>
