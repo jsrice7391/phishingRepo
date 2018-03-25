@@ -1,6 +1,6 @@
 const db = require("../models");
-const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 
 
@@ -13,17 +13,10 @@ module.exports = {
     },
     search: (req,res) =>{
         console.log(req.query.search)
-        db.User.findAll({
-          where: {
-            user_from: req.query.search
-          }
+        db.sequelize.query(`SELECT * FROM users WHERE user_from LIKE '%${req.query.search}%';`, {type: sequelize.QueryTypes.SELECT})
+        .then(users =>{
+          console.log(users);
+          res.json(users)
         })
-          .then(result => {
-            console.log(result);
-            res.json(result);
-          })
-          .catch(err => {
-            return err;
-          });
     }
 }
