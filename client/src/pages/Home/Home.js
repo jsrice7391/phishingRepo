@@ -84,15 +84,36 @@ class Home extends Component {
   renderSearchedLogic() {
     if (this.state.searched) {
       return (
-        <div>
+        <div className="padder">
         <RaisedButton label="Generate CSV"/>
         <RaisedButton label="Clear" onClick={() => this.getAll()} />
         </div>
       );
     } else {
       return (
-      <div>
-      <RaisedButton label="Search" onClick={() => this.searchAll()} />
+      <div className="padder">
+                  <Row>
+                    <Col md={12} xs={12}>
+                      <Textfield floatingLabelText="Search" value={this.state.search} name="search" onChange={this.handleInputChange} />
+                      <DropDownMenu name="searchParam" value="Search Field" onChange={this.handleInputChange}>
+                        <MenuItem value="From" primaryText="From" />
+                        <MenuItem value="To" primaryText="To" />
+                        <MenuItem value="Subject" primaryText="Subject" />
+                        <MenuItem value="Location" primaryText="Location" />
+                      </DropDownMenu>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={12} xs={12}>
+                      <DatePicker name="startDate" autoOk={true} floatingLabelText="startDate" onChange={(x, event) => {
+                          console.log(event);
+                        }} />
+                      <DatePicker name="startDate" autoOk={true} floatingLabelText="startDate" onChange={(x, event) => {
+                          console.log(event);
+                        }} />
+                   <RaisedButton label="Search" onClick={() => this.searchAll()} />
+                   </Col>
+                   </Row>        
       </div>
       )
     }
@@ -129,28 +150,9 @@ class Home extends Component {
             <Col xs={12} md={6}>
               <Card>
                 <CardTitle title="Generate Report" subtitle={this.state.date} />
-                <Row>
-                  <Col md={12} xs={12}>
-                    <Textfield floatingLabelText="Search" value={this.state.search} name="search" onChange={this.handleInputChange} />
-                    <DropDownMenu name="searchParam" value="Search Field" onChange={this.handleInputChange}>
-                      <MenuItem value="From" primaryText="From" />
-                      <MenuItem value="To" primaryText="To" />
-                      <MenuItem value="Subject" primaryText="Subject" />
-                      <MenuItem value="Location" primaryText="Location" />
-                    </DropDownMenu>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={12} xs={12}>
-                    <DatePicker name="startDate" autoOk={true} floatingLabelText="startDate" onChange={(x, event) => {
-                        console.log(event);
-                      }} />
-                    <DatePicker name="startDate" autoOk={true} floatingLabelText="startDate" onChange={(x, event) => {
-                        console.log(event);
-                      }} />
-                    {this.renderSearchedLogic()}
-                  </Col>
-                </Row>
+               
+                      {this.renderSearchedLogic()}      
+        
               </Card>
             </Col>
           </Row>
@@ -211,7 +213,6 @@ class Home extends Component {
               <Tab label="Tab B" value="b">
                 <div>
                   <p>Welcome to tab B</p>
-             
                 </div>
               </Tab>
             </Tabs>

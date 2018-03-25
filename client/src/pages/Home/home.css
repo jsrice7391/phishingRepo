@@ -10,6 +10,10 @@ body{
     margin: 20px;
 }
 
+.padder {
+    margin-left: 3.5%;
+    padding-bottom: 3.5%;
+}
 .muidocs-icon-custom-github:before {
     content: "\e625";
 }
