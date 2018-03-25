@@ -1,4 +1,8 @@
 const db = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+
+
 
 module.exports = {
     getAll: (req,res) =>{
@@ -8,14 +12,18 @@ module.exports = {
         });
     },
     search: (req,res) =>{
+        console.log(req.query.search)
         db.User.findAll({
-            where: {
-                user_to: req.quey.subject
-            }
-        }).then(result =>{
-            res.json(result)
-        }).catch(err =>{
-            return(err)
+          where: {
+            user_from: req.query.search
+          }
         })
+          .then(result => {
+            console.log(result);
+            res.json(result);
+          })
+          .catch(err => {
+            return err;
+          });
     }
 }

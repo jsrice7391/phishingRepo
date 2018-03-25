@@ -4,5 +4,8 @@ const userController = require("../../controllers/firstController")
 router.route("/")
   .get(userController.getAll)
 
+router.route("/search")
+    .get(userController.search)
+
 
 module.exports = router;

@@ -8,6 +8,8 @@ import {Grid, Row, Col} from "react-bootstrap";
 import "./home.css";
 import SearchBar from "material-ui-search-bar";
 import moment from "moment";
+import FlatButton from "material-ui/FlatButton";
+import Textfield from "material-ui/TextField"
 import {
   Card,
   CardActions,
@@ -48,13 +50,15 @@ class Home extends Component {
   };
 
   searchAll = parameter => {
-    API.search({subject:this.state.search}).then(results =>{
+    API.search({search:this.state.search}).then(results =>{
+      console.log(results.data)
       this.setState({
-        users: results
+        users: results.data
       })
     })
 
   }
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -78,9 +82,6 @@ class Home extends Component {
         <Toolbar>
           <ToolbarGroup>
             <ToolbarTitle text="Phishing Email" />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <SearchBar value={this.state.search} onChange={value => this.searchAll(value)} onRequestSearch={() => console.log("onRequestSearch")} style={{ margin: "0 auto", maxWidth: 800 }} />
           </ToolbarGroup>
         </Toolbar>
         <div className="main">
@@ -108,7 +109,10 @@ class Home extends Component {
               <Card>
                 <CardTitle title="Generate Report" subtitle={this.state.date} />
                 <Row>
-                  <Col md={6} xs={12} />
+                  <Col md={6} xs={12}>
+                  <Textfield floatingLabelText="Search" value={this.state.seasrch} name="search" onChange={this.handleInputChange}/>
+                  <FlatButton label="Search" onClick={this.searchAll}/>
+                  </Col>
                 </Row>
               </Card>
             </Col>

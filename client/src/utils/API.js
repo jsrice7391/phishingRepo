@@ -6,10 +6,10 @@ export default {
     return axios.get("/api/users");
   },
   search: (query) =>{
-    return axios.get("/api/users", {
+    return axios.get("/api/users/search", {
       params:{
-        subject: query.search
+        search: query.search
       }
-    });
+    })
   }
 };
