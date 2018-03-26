@@ -14,6 +14,7 @@ import DropDownMenu from "material-ui/DropDownMenu";
 import MenuItem from "material-ui/MenuItem";
 import DatePicker from "material-ui/DatePicker";
 import {Tabs, Tab} from "material-ui/Tabs";
+import DataTab from "../../components/DataTab"
 import {
   Card,
   CardActions,
@@ -188,7 +189,7 @@ class Home extends Component {
           </Row>
           <br />
           <Card>
-            <Tabs value={this.state.value} onChange={this.handleChange}>
+            <Tabs className="tab-color" value={this.state.value} onChange={this.handleChange}>
               <Tab label="Tab A" value="a">
                 <Table
                   height="300px"
@@ -260,9 +261,8 @@ class Home extends Component {
                 </Table>
               </Tab>
               <Tab label="Tab B" value="b">
-                <div>
-                  <p>Welcome to tab B</p>
-                </div>
+                    <DataTab />
+            
               </Tab>
             </Tabs>
           </Card>
