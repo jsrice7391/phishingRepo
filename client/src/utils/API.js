@@ -8,7 +8,8 @@ export default {
   search: (query) =>{
     return axios.get("/api/users/search", {
       params:{
-        search: query.search
+        search: query.search,
+        searchParam: query.searchParam
       }
     })
   }

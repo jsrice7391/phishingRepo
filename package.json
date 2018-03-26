@@ -27,7 +27,11 @@
     "dotenv": "^5.0.1",
     "express": "^4.15.4",
     "mysql2": "^1.5.3",
+    "passport": "^0.4.0",
+    "passport-azure-ad": "^3.0.12",
     "react-bootstrap": "^0.32.1",
+    "restify": "^7.0.0",
+    "restify-plugins": "^1.6.0",
     "sequelize": "^4.37.4"
   }
 }
