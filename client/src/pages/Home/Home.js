@@ -22,6 +22,8 @@ import {
 import { get } from "http";
 import ResultTable from "../../components/ResultTable";
 import ResultRead from "../../components/ResultRead";
+import {CSVLink, CSVDownload} from "react-csv";
+
 
 
 
@@ -81,7 +83,9 @@ class Home extends Component {
       return (
         <div className="padder">
           <RaisedButton className="separateButton" label="Generate CSV" />
+         
           <RaisedButton label="Clear" onClick={() => this.getAll()} />
+           <CSVLink data={this.state.users}>Download</CSVLink>
         </div>
       );
     } else {
