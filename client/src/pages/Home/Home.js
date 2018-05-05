@@ -23,19 +23,11 @@ import {
   CardTitle,
   CardText
 } from "material-ui/Card";
-import {
-  Table,
-  TableBody,
-  TableFooter,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn
-} from "material-ui/Table";
 import TextField from "material-ui/TextField";
 import Toggle from "material-ui/Toggle";
 import { get } from "http";
-import MdCheckCircle from "react-icons/lib/md/check-circle";
+import ResultTable from "../../components/ResultTable";
+
 
 
 
@@ -115,7 +107,7 @@ class Home extends Component {
   }
 
   render() {
-    return <MuiThemeProvider>
+    return (<MuiThemeProvider>
         <Toolbar style={{ backgroundColor: "white" }}>
           <ToolbarGroup>
             <ToolbarTitle text="Phishing Email" />
@@ -159,52 +151,11 @@ class Home extends Component {
           <Card>
             <Tabs style={{ backgroundColor: "white " }} inkBarStyle={{ backgroundColor: "grey" }} value={this.state.value} onChange={this.handleChange}>
               <Tab style={{ backgroundColor: "white ", color: "black" }} label="Search" value="a">
-                <Toolbar style={{ backgroundColor: "#E8EFFB" }}>
-                  <ToolbarTitle text="Most Recent" />
-                </Toolbar>
-                <Table height="400px" fixedHeader={true} fixedFooter={true} selectable={true} multiSelectable={true}>
-                  <TableHeader displaySelectAll={false} adjustForCheckbox={false} enableSelectAll={false}>
-                    <TableRow>
-                      <TableHeaderColumn tooltip="The ID">
-                        ID
-                      </TableHeaderColumn>
-                      <TableHeaderColumn tooltip="Name of Receiver">
-                        {""}
-                        Receiver
-                      </TableHeaderColumn>
-                      <TableHeaderColumn tooltip="Name of Sender">
-                        Sender
-                      </TableHeaderColumn>
-                      <TableHeaderColumn tooltip="Subject of email">
-                        Subject
-                      </TableHeaderColumn>
-                      <TableHeaderColumn tooltip="Name of Receiver">
-                        Read
-                      </TableHeaderColumn>
-                      <TableHeaderColumn tooltip="Name of Receiver">
-                        Location
-                      </TableHeaderColumn>
-                      <TableHeaderColumn tooltip="Name of Receiver">
-                        Date
-                      </TableHeaderColumn>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody displayRowCheckbox={false} deselectOnClickaway={true} showRowHover={true} stripedRows={false}>
-                    {this.state.users.length ? this.state.users.map(
-                        (row, index) => (
-                          <TableRow key={index}>
-                            <TableRowColumn>{index}</TableRowColumn>
-                            <TableRowColumn>{row.user_from}</TableRowColumn>
-                            <TableRowColumn>{row.user_to}</TableRowColumn>
-                            <TableRowColumn>{row.location}</TableRowColumn>
-                            <TableRowColumn>{row.read_stat == true ? <MdCheckCircle/> : null}</TableRowColumn>
-                            <TableRowColumn>{row.location}</TableRowColumn>
-                            <TableRowColumn>{row.completed}</TableRowColumn>
-                          </TableRow>
-                        )
-                      ) : <h2>No Results Found</h2>}
-                  </TableBody>
-                </Table>
+              <ResultTable results={this.state.users}/>
+    
+      
+              
+               
               </Tab>
               <Tab style={{ backgroundColor: "white ", color: "black" }} label="Past Searches" value="b">
                 <DataTab />
@@ -212,7 +163,8 @@ class Home extends Component {
             </Tabs>
           </Card>
         </div>
-      </MuiThemeProvider>;
+      </MuiThemeProvider>
+    )
   }
 }
 
