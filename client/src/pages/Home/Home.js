@@ -35,12 +35,15 @@ import {
 import TextField from "material-ui/TextField";
 import Toggle from "material-ui/Toggle";
 import { get } from "http";
+import MdCheckCircle from "react-icons/lib/md/check-circle";
+
+
 
 
 
 
 class Home extends Component {
-  state = {
+  state = { 
     date: moment(Date.now()).format("MMM Do hh:mm A"),
     users: [],
     username: "Jus",
@@ -99,10 +102,10 @@ class Home extends Component {
             <Col md={12} xs={12}>
               <Textfield floatingLabelText="Search" value={this.state.search} name="search" onChange={this.handleInputChange} />
               <DropDownMenu name="searchKey" value={this.state.searchKey} onChange={this.handleChange}>
-                <MenuItem value={"user_from"} primaryText="From" />
-                <MenuItem value={"user_to"} primaryText="To" />
+                <MenuItem value={"user_from"} primaryText="Receiver" />
+                <MenuItem value={"user_to"} primaryText="Sender" />
                 {/* <MenuItem value={"subject"} primaryText="Subject" /> */}
-                <MenuItem value={"location"} primaryText="Location" />
+                <MenuItem value={"location"} primaryText="Subject" />
               </DropDownMenu>
               <RaisedButton label="Search" onClick={() => this.searchAll()} />
             </Col>
@@ -167,12 +170,12 @@ class Home extends Component {
                       </TableHeaderColumn>
                       <TableHeaderColumn tooltip="Name of Receiver">
                         {""}
-                        To
+                        Receiver
                       </TableHeaderColumn>
-                      <TableHeaderColumn tooltip="Name of Receiver">
-                        From
+                      <TableHeaderColumn tooltip="Name of Sender">
+                        Sender
                       </TableHeaderColumn>
-                      <TableHeaderColumn tooltip="Name of Receiver">
+                      <TableHeaderColumn tooltip="Subject of email">
                         Subject
                       </TableHeaderColumn>
                       <TableHeaderColumn tooltip="Name of Receiver">
@@ -194,7 +197,7 @@ class Home extends Component {
                             <TableRowColumn>{row.user_from}</TableRowColumn>
                             <TableRowColumn>{row.user_to}</TableRowColumn>
                             <TableRowColumn>{row.location}</TableRowColumn>
-                            <TableRowColumn>{row.read_stat}</TableRowColumn>
+                            <TableRowColumn>{row.read_stat == true ? <MdCheckCircle/> : null}</TableRowColumn>
                             <TableRowColumn>{row.location}</TableRowColumn>
                             <TableRowColumn>{row.completed}</TableRowColumn>
                           </TableRow>
