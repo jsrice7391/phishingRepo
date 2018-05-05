@@ -17,16 +17,12 @@ import {Tabs, Tab} from "material-ui/Tabs";
 import DataTab from "../../components/DataTab"
 import {
   Card,
-  CardActions,
-  CardHeader,
-  CardMedia,
-  CardTitle,
   CardText
 } from "material-ui/Card";
-import TextField from "material-ui/TextField";
-import Toggle from "material-ui/Toggle";
 import { get } from "http";
 import ResultTable from "../../components/ResultTable";
+import ResultRead from "../../components/ResultRead";
+
 
 
 
@@ -116,29 +112,7 @@ class Home extends Component {
         <div className="main">
           <Row className="show-grid">
             <Col xs={12} md={6}>
-              <Card>
-                <CardText>Report Scan as of {this.state.date} </CardText>
-                <Row>
-                  <Col md={4} sm={6} xs={12}>
-                    <CardText style={{ fontWeight: 100, color: "grey" }}>
-                      User Count
-                    </CardText>
-                    <CardTitle className="highlight" title={this.state.users.length} />
-                  </Col>
-                  <Col md={4} xs={12}>
-                    <CardText style={{ fontWeight: 100, color: "grey" }}>
-                      User Count
-                    </CardText>
-                    <CardTitle className="highlight" title={this.state.username} />
-                  </Col>
-                  <Col md={4} xs={12}>
-                    <CardText style={{ fontWeight: 100, color: "grey" }}>
-                      User Count
-                    </CardText>
-                    <CardTitle className="highlight" title={this.state.username} />
-                  </Col>
-                </Row>
-              </Card>
+            <ResultRead date={this.state.date} username={this.state.username} users={this.state.users}/>  
             </Col>
             <Col xs={12} md={6}>
               <Card>
@@ -152,10 +126,6 @@ class Home extends Component {
             <Tabs style={{ backgroundColor: "white " }} inkBarStyle={{ backgroundColor: "grey" }} value={this.state.value} onChange={this.handleChange}>
               <Tab style={{ backgroundColor: "white ", color: "black" }} label="Search" value="a">
               <ResultTable results={this.state.users}/>
-    
-      
-              
-               
               </Tab>
               <Tab style={{ backgroundColor: "white ", color: "black" }} label="Past Searches" value="b">
                 <DataTab />
