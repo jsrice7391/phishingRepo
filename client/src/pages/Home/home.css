@@ -3,16 +3,24 @@
 }
 
 body{
-    background-color: grey;   
+    background-color:#EEF4F9;
+}
+
+.toolbar {
+    background-color: white;
 }
 
 .main {
     margin: 20px;
 }
 
+.separateButton {
+    margin-right: 3.5%;
+}
+
 .padder {
     margin-left: 3.5%;
-    padding-bottom: 3.5%;
+    padding-bottom: 2.5%;
 }
 .muidocs-icon-custom-github:before {
     content: "\e625";

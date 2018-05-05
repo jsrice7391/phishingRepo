@@ -41,7 +41,7 @@ import { get } from "http";
 
 class Home extends Component {
   state = {
-    date: moment(Date.now()).format("MMM Do hh:mm"),
+    date: moment(Date.now()).format("MMM Do hh:mm A"),
     users: [],
     username: "Jus",
     searched: false,
@@ -89,63 +89,31 @@ class Home extends Component {
     if (this.state.searched) {
       return (
         <div className="padder">
-          <RaisedButton label="Generate CSV" />
+          <RaisedButton className="separateButton" label="Generate CSV" />
           <RaisedButton label="Clear" onClick={() => this.getAll()} />
         </div>
       );
     } else {
-      return (
-        <div className="padder">
+      return <div className="padder">
           <Row>
             <Col md={12} xs={12}>
-              <Textfield
-                floatingLabelText="Search"
-                value={this.state.search}
-                name="search"
-                onChange={this.handleInputChange}
-              />
-              <DropDownMenu
-                name="searchKey"
-                value={this.state.searchKey}
-                onChange={this.handleChange}
-              >
+              <Textfield floatingLabelText="Search" value={this.state.search} name="search" onChange={this.handleInputChange} />
+              <DropDownMenu name="searchKey" value={this.state.searchKey} onChange={this.handleChange}>
                 <MenuItem value={"user_from"} primaryText="From" />
                 <MenuItem value={"user_to"} primaryText="To" />
                 {/* <MenuItem value={"subject"} primaryText="Subject" /> */}
                 <MenuItem value={"location"} primaryText="Location" />
               </DropDownMenu>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12} xs={12}>
-              <DatePicker
-                name="startDate"
-                autoOk={true}
-                floatingLabelText="startDate"
-                onChange={(x, event) => {
-                  console.log(event);
-                }}
-              />
-              <DatePicker
-                name="startDate"
-                autoOk={true}
-                floatingLabelText="startDate"
-                onChange={(x, event) => {
-                  console.log(event);
-                }}
-              />
               <RaisedButton label="Search" onClick={() => this.searchAll()} />
             </Col>
           </Row>
-        </div>
-      );
+        </div>;
     }
   }
 
   render() {
-    return (
-      <MuiThemeProvider>
-        <Toolbar>
+    return <MuiThemeProvider>
+        <Toolbar style={{ backgroundColor: "white" }}>
           <ToolbarGroup>
             <ToolbarTitle text="Phishing Email" />
           </ToolbarGroup>
@@ -154,67 +122,49 @@ class Home extends Component {
           <Row className="show-grid">
             <Col xs={12} md={6}>
               <Card>
-                <CardTitle title="Summary" subtitle={this.state.date} />
+                <CardText>Report Scan as of {this.state.date} </CardText>
                 <Row>
                   <Col md={4} sm={6} xs={12}>
-                    <CardText>User Count</CardText>
-                    <CardTitle
-                      className="highlight"
-                      title={this.state.users.length}
-                    />
+                    <CardText style={{ fontWeight: 100, color: "grey" }}>
+                      User Count
+                    </CardText>
+                    <CardTitle className="highlight" title={this.state.users.length} />
                   </Col>
                   <Col md={4} xs={12}>
-                    <CardText>Testing code</CardText>
-                    <CardTitle
-                      className="highlight"
-                      title={this.state.username}
-                    />
+                    <CardText style={{ fontWeight: 100, color: "grey" }}>
+                      User Count
+                    </CardText>
+                    <CardTitle className="highlight" title={this.state.username} />
                   </Col>
                   <Col md={4} xs={12}>
-                    <CardText>Testing code</CardText>
-                    <CardTitle
-                      className="highlight"
-                      title={this.state.username}
-                    />
+                    <CardText style={{ fontWeight: 100, color: "grey" }}>
+                      User Count
+                    </CardText>
+                    <CardTitle className="highlight" title={this.state.username} />
                   </Col>
                 </Row>
               </Card>
             </Col>
             <Col xs={12} md={6}>
               <Card>
-                <CardTitle title="Generate Report" subtitle={this.state.date} />
+                <CardText>Search</CardText>
                 {this.renderSearchedLogic()}
               </Card>
             </Col>
           </Row>
           <br />
           <Card>
-            <Tabs className="tab-color" value={this.state.value} onChange={this.handleChange}>
-              <Tab label="Tab A" value="a">
-                <Table
-                  height="300px"
-                  fixedHeader={true}
-                  fixedFooter={true}
-                  selectable={true}
-                  multiSelectable={true}
-                >
-                  <TableHeader
-                    displaySelectAll={false}
-                    adjustForCheckbox={false}
-                    enableSelectAll={false}
-                  >
+            <Tabs style={{ backgroundColor: "white " }} inkBarStyle={{ backgroundColor: "grey" }} value={this.state.value} onChange={this.handleChange}>
+              <Tab style={{ backgroundColor: "white ", color: "black" }} label="Search" value="a">
+                <Toolbar style={{ backgroundColor: "#E8EFFB" }}>
+                  <ToolbarTitle text="Most Recent" />
+                </Toolbar>
+                <Table height="400px" fixedHeader={true} fixedFooter={true} selectable={true} multiSelectable={true}>
+                  <TableHeader displaySelectAll={false} adjustForCheckbox={false} enableSelectAll={false}>
                     <TableRow>
-                      <TableHeaderColumn
-                        colSpan="3"
-                        tooltip="Super Header"
-                        style={{ textAlign: "center" }}
-                      >
-                        {" "}
-                        Phishing Emaillist
+                      <TableHeaderColumn tooltip="The ID">
+                        ID
                       </TableHeaderColumn>
-                    </TableRow>
-                    <TableRow>
-                      <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
                       <TableHeaderColumn tooltip="Name of Receiver">
                         {""}
                         To
@@ -236,39 +186,30 @@ class Home extends Component {
                       </TableHeaderColumn>
                     </TableRow>
                   </TableHeader>
-                  <TableBody
-                    displayRowCheckbox={false}
-                    deselectOnClickaway={true}
-                    showRowHover={true}
-                    stripedRows={false}
-                  >
-                    {this.state.users.length ? (
-                      this.state.users.map((row, index) => (
-                        <TableRow key={index}>
-                          <TableRowColumn>{index}</TableRowColumn>
-                          <TableRowColumn>{row.user_from}</TableRowColumn>
-                          <TableRowColumn>{row.user_to}</TableRowColumn>
-                          <TableRowColumn>{row.location}</TableRowColumn>
-                          <TableRowColumn>{row.read_stat}</TableRowColumn>
-                          <TableRowColumn>{row.location}</TableRowColumn>
-                          <TableRowColumn>{row.completed}</TableRowColumn>
-                        </TableRow>
-                      ))
-                    ) : (
-                      <h2>No Results Found</h2>
-                    )}
+                  <TableBody displayRowCheckbox={false} deselectOnClickaway={true} showRowHover={true} stripedRows={false}>
+                    {this.state.users.length ? this.state.users.map(
+                        (row, index) => (
+                          <TableRow key={index}>
+                            <TableRowColumn>{index}</TableRowColumn>
+                            <TableRowColumn>{row.user_from}</TableRowColumn>
+                            <TableRowColumn>{row.user_to}</TableRowColumn>
+                            <TableRowColumn>{row.location}</TableRowColumn>
+                            <TableRowColumn>{row.read_stat}</TableRowColumn>
+                            <TableRowColumn>{row.location}</TableRowColumn>
+                            <TableRowColumn>{row.completed}</TableRowColumn>
+                          </TableRow>
+                        )
+                      ) : <h2>No Results Found</h2>}
                   </TableBody>
                 </Table>
               </Tab>
-              <Tab label="Tab B" value="b">
-                    <DataTab />
-            
+              <Tab style={{ backgroundColor: "white ", color: "black" }} label="Past Searches" value="b">
+                <DataTab />
               </Tab>
             </Tabs>
           </Card>
         </div>
-      </MuiThemeProvider>
-    );
+      </MuiThemeProvider>;
   }
 }
 

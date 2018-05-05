@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.16.2",
+    "icons": "^1.0.0",
     "material-ui": "^0.20.0",
     "material-ui-search-bar": "^0.4.1",
     "moment": "^2.21.0",
