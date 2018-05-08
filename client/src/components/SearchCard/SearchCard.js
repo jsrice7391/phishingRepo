@@ -11,12 +11,18 @@ import {
     Row,
     Col
 } from "react-bootstrap";
+import _ from "underscore";
 
 
 
-const SearchCard  = (props) => (
 
-        <Col md={6}>
+const SearchCard  = (props) => {
+
+    const theUsers = props.all[0];
+    console.log("Here is the array: " + JSON.stringify(theUsers))
+
+
+       return  <Col md={6}>
   
 
 
@@ -32,11 +38,14 @@ const SearchCard  = (props) => (
       <FlatButton label="Action2" />
     </CardActions>
     <CardText expandable={true}>
-        There were this many users: {props.all.filter()}
+        There were this many users:
+        {_.uniq(theUsers).map((element, index) => (
+          <li key={index}>{element.user_from}</li> 
+        ))}
     </CardText>
   </Card>
     </Col>
 
-)
+}
 
 export default SearchCard;

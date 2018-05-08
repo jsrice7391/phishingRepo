@@ -29,7 +29,6 @@ class DataTab extends React.Component {
 
     getSearches(){
         API.getSearches().then(res => {
-            console.log(res.data);
             this.setState({
                 searches: res.data 
             });
@@ -38,6 +37,8 @@ class DataTab extends React.Component {
 
 
     render(){
+
+        this.state.searches.map((element, index) => element.users.map((user,index) => console.log("Hey " + user.length)))
         return (
             <MuiThemeProvider>
                 <Grid style={style}>
@@ -54,7 +55,7 @@ class DataTab extends React.Component {
                      total = {
                          search.total
                      }
-                     all={this.state.searches}
+                     all={search.users}
                      />
                 ))}  
                 </Grid>  
