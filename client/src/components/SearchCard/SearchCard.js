@@ -18,8 +18,9 @@ import PieChart from "../../data/PieChart";
 const SearchCard  = (props) => {
 
     const theUsers = props.all[0];
-    const unread = theUsers.filter(user => user.read_stat === 0).length;
-    const read = theUsers.filter(user => user.read_stat !== 0).length;
+    theUsers.map((user, index) => console.log(user))
+    const unread = theUsers.filter(user => user.read_stat == 0).length;
+    const read = theUsers.filter(user => user.read_stat !== 0 ).length;
     console.log(`The amount of read: ${read} The amount of unread: ${unread}`)
 
    
