@@ -27,6 +27,8 @@
     "dotenv": "^5.0.1",
     "express": "^4.15.4",
     "material-ui": "^0.20.0",
+    "mongodb": "^3.0.7",
+    "mongoose": "^5.0.17",
     "mysql2": "^1.5.3",
     "passport": "^0.4.0",
     "passport-azure-ad": "^3.0.12",
