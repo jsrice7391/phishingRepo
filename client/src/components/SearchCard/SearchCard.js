@@ -32,7 +32,7 @@ const SearchCard  = (props) => (
       <FlatButton label="Action2" />
     </CardActions>
     <CardText expandable={true}>
-        There were this many users: {props.total}
+        There were this many users: {props.all.filter()}
     </CardText>
   </Card>
     </Col>

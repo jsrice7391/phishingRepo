@@ -9,6 +9,8 @@ import {
     Row,
     Col
 } from "react-bootstrap";
+import moment from "moment";
+
 
 const style = {
     margin: "3.5% 2.5%"
@@ -17,7 +19,8 @@ const style = {
 
 class DataTab extends React.Component {
     state = {
-        searches: []
+        searches: [],
+        users: []
     }
 
     componentWillMount(){
@@ -26,9 +29,9 @@ class DataTab extends React.Component {
 
     getSearches(){
         API.getSearches().then(res => {
-            console.log(res);
+            console.log(res.data);
             this.setState({
-                searches: res.data     
+                searches: res.data 
             });
         });
     }
@@ -39,7 +42,20 @@ class DataTab extends React.Component {
             <MuiThemeProvider>
                 <Grid style={style}>
                  {this.state.searches.map((search, index) => (
-                     < SearchCard key={index} title={search.title} subtitle={search.date} total={search.total}/>
+                     < SearchCard key = {
+                         index
+                     }
+                     title = {
+                         search.title
+                     }
+                     subtitle = {
+                         moment(search.date).format("MMMM Do YYYY, h:mm A")
+                     }
+                     total = {
+                         search.total
+                     }
+                     all={this.state.searches}
+                     />
                 ))}  
                 </Grid>  
             </MuiThemeProvider>
