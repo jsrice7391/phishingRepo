@@ -4,24 +4,19 @@ const routes = require("./routes");
 const app = express();
 const db = require("./models");
 const mongo = require("./mongo")
+const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
 
 // Retrieve
 var MongoClient = require('mongodb').MongoClient;
 
-MongoClient.connect("mongodb://localhost:27017", function (err, db) {
-    if (err) { return console.dir(err); }
-    console.log(`
-    
-    Mongo Connected
-    
-    `)
 
+mongoose.Promise = global.Promise;
 
-
-
-
-});
+// Connect to the Mongo DB
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://localhost/phishing"
+);
 
 
 // Configure body parser for AJAX requests
