@@ -23,6 +23,8 @@ import { get } from "http";
 import ResultTable from "../../components/ResultTable";
 import ResultRead from "../../components/ResultRead";
 import {CSVLink, CSVDownload} from "react-csv";
+import PieChart from "../../data/PieChart";
+
 
 class Home extends Component {
   state = { 

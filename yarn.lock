@@ -1705,6 +1705,10 @@ latest-version@^3.0.0:
   dependencies:
     package-json "^4.0.0"
 
+lodash-es@^4.17.10:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
+
 lodash.get@4.4.2, lodash.get@~4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"

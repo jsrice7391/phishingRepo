@@ -9,6 +9,9 @@ import {
     Row,
     Col
 } from "react-bootstrap";
+import Toolbar, {
+    ToolbarTitle
+} from "material-ui/Toolbar";
 import moment from "moment";
 
 
@@ -41,6 +44,9 @@ class DataTab extends React.Component {
         this.state.searches.map((element, index) => element.users.map((user,index) => console.log("Hey " + user.length)))
         return (
             <MuiThemeProvider>
+                 <Toolbar style={{ backgroundColor: "#E8EFFB" }}>
+                  <ToolbarTitle text="All searches" />
+                </Toolbar>
                 <Grid style={style}>
                  {this.state.searches.map((search, index) => (
                      < SearchCard key = {

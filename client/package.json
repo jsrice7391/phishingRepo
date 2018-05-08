@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "@nivo/pie": "^0.33.0",
     "axios": "^0.16.2",
     "icons": "^1.0.0",
     "material-ui": "^0.20.0",
