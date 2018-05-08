@@ -14,8 +14,13 @@ const SearchSchema = new Schema ({
         type: String,
         required: true
     },
+    query: {
+        type: String,
+        required: true
+    },
     total: {
-        type: Number
+        type: Number,
+        required: true
     },
     users:[] 
 })

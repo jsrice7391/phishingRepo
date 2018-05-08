@@ -1,4 +1,6 @@
 import axios from "axios";
+import moment from "moment";
+
 
 export default {
   // Gets all items
@@ -9,7 +11,8 @@ export default {
     return axios.get("/api/users/search", {
       params:{
         search: query.search,
-        searchParam: query.searchParam
+        searchParam: query.searchParam,
+        date: moment(Date.now()).format()
       }
     })
   }

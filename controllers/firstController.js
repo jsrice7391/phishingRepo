@@ -16,16 +16,18 @@ module.exports = {
         console.log(req.query.search)
         db.sequelize.query(`SELECT * FROM users WHERE ${req.query.searchParam} LIKE '${req.query.search}%';`, {type: sequelize.QueryTypes.SELECT})
         .then(users =>{
-          mongo.Search.create({
-            title: "hello",
-            date: "March 27",
-            parameter: "subject",
-            total:1,
-            users:[{
-                name: "Juan",
-                second: "Carlos"
-            }]
-          });
+            mongo.Search.create({
+                title: `${req.query.searchParam} containing ${req.query.search}`,
+                date: req.query.date,
+                parameter: req.query.searchParam,
+                query: req.query.search,
+                total: users.length,
+                users: [users]
+            })
+
+            console.log("Mongo instance created")
+
+    
 
           res.json(users)
         })
