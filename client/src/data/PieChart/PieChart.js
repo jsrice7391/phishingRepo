@@ -9,17 +9,17 @@ import {
 
 const PieChart = (props) => {
 
-    const {read, unread} = props;
+    let {read, unread} = props;
 
     let data = [{
-            "id": "php",
-            "label": "php",
-            "value": 160,
+            "id": "read",
+            "label": "read",
+            "value": props.read,
             "color": "hsl(35, 70%, 50%)"
         }, {
-            "id": "ruby",
-            "label": "ruby",
-            "value": 195,
+            "id": "unread",
+            "label": "unread",
+            "value": props.unread,
             "color": "hsl(161, 70%, 50%)"
         }];
 

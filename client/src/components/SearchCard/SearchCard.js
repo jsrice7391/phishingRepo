@@ -18,7 +18,11 @@ import PieChart from "../../data/PieChart";
 const SearchCard  = (props) => {
 
     const theUsers = props.all[0];
-    console.log("Here is the array: " + JSON.stringify(theUsers))
+    const unread = theUsers.filter(user => user.read_stat === 0).length;
+    const read = theUsers.filter(user => user.read_stat !== 0).length;
+    console.log(`The amount of read: ${read} The amount of unread: ${unread}`)
+
+   
 
        return  <Col md={6}>
           <Card>
@@ -27,11 +31,7 @@ const SearchCard  = (props) => {
               subtitle={props.subtitle}
               actAsExpander={true}
               showExpandableButton={true}
-            />
-            <div style={{height: "100px"}}>
-            < PieChart / >
-            </div>
-            
+            />       
             <CardActions>
             </CardActions>
             <CardText expandable={true}>
@@ -42,13 +42,11 @@ const SearchCard  = (props) => {
                   <p>{element.read_stat == 1 ? "true" : "false"}</p>
                   </div>
                 ))}
-                <PieChart read = {
-                  theUsers.filter(user => user.read_stat === 0).length
-                }
-                unread = {
-                  theUsers.filter(user => user.read_stat === 0).length
-                }
+                <div style={{height: "120px"}}>
+                <PieChart read = {read}
+                unread = {unread}
                 />
+                </div>
 
 
             </CardText>
