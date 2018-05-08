@@ -7,6 +7,10 @@ export default {
   getAll: function() {
     return axios.get("/api/users");
   },
+
+  getSearches: () =>{
+    return axios.get("/api/searches")
+  },
   search: (query) =>{
     return axios.get("/api/users/search", {
       params:{

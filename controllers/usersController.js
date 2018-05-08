@@ -24,11 +24,6 @@ module.exports = {
                 total: users.length,
                 users: [users]
             })
-
-            console.log("Mongo instance created")
-
-    
-
           res.json(users)
         })
     }
