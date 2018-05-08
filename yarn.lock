@@ -1574,6 +1574,14 @@ is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
 
+is-undefined@^1.0.0:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/is-undefined/-/is-undefined-1.0.9.tgz#09a661bdef7607f29021c913f5b1c179bebca9e6"
+
+is-win@^1.0.2:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/is-win/-/is-win-1.0.8.tgz#298e654acce43b6c2935b526c23b2651babe7d8b"
+
 is-windows@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
@@ -2277,9 +2285,21 @@ posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
 
+powershell@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/powershell/-/powershell-2.3.0.tgz#41e9b1b02b19b722643611861ebb24f8b39c33bd"
+  dependencies:
+    is-undefined "^1.0.0"
+    is-win "^1.0.2"
+    spawno "^1.0.0"
+
 prepend-http@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
+
+proc-output@^1.0.0:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/proc-output/-/proc-output-1.0.6.tgz#9ffcfb3ac6a156ee32b7ebd69f024a4f6d896350"
 
 process-nextick-args@~2.0.0:
   version "2.0.0"
@@ -2872,6 +2892,12 @@ source-map@^0.5.6:
 spawn-command@^0.0.2-1:
   version "0.0.2-1"
   resolved "https://registry.yarnpkg.com/spawn-command/-/spawn-command-0.0.2-1.tgz#62f5e9466981c1b796dc5929937e11c9c6921bd0"
+
+spawno@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/spawno/-/spawno-1.0.4.tgz#8df56503fc315693588e7221494d5c94f165bb57"
+  dependencies:
+    proc-output "^1.0.0"
 
 spdy-transport@^2.0.18:
   version "2.1.0"
