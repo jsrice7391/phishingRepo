@@ -102,11 +102,6 @@ class Home extends Component {
 
   render() {
     return (<MuiThemeProvider>
-        <Toolbar style={{ backgroundColor: "white" }}>
-          <ToolbarGroup>
-            <ToolbarTitle text="Phishing Email" />
-          </ToolbarGroup>
-        </Toolbar>
         <div className="main">
           <Row className="show-grid">
             <Col xs={12} md={6}>

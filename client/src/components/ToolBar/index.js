@@ -1,1 +1,1 @@
-export {ToolBar} from "./Toolbar";
+export {default} from "./Toolbar";

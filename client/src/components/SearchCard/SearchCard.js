@@ -31,8 +31,8 @@ const SearchCard  = (props) => {
             <CardHeader
               title={props.title}
               subtitle={props.subtitle}
-              actAsExpander={true}
-              showExpandableButton={true}
+              actAsExpander = {theUsers.length > 0 ? true : false}
+              showExpandableButton = {theUsers.length > 0 ? true : false}
             />       
             <CardActions>
             </CardActions>
@@ -43,8 +43,7 @@ const SearchCard  = (props) => {
                 />
                 </div>
 
-
-            </CardText>
+           </CardText>
           </Card>
     </Col>
 
