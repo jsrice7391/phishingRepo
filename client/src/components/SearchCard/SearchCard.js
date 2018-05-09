@@ -13,6 +13,7 @@ import {
 } from "react-bootstrap";
 import _ from "underscore";
 import PieChart from "../../data/PieChart";
+import Table from "../BootstrapTable";
 
 
 const SearchCard  = (props) => {
@@ -36,13 +37,6 @@ const SearchCard  = (props) => {
             <CardActions>
             </CardActions>
             <CardText expandable={true}>
-                There were this many users:
-                {_.uniq(theUsers).map((element, index) => (
-                  <div>
-                  <p>{element.user_from}</p>
-                  <p>{element.read_stat == 1 ? "true" : "false"}</p>
-                  </div>
-                ))}
                 <div style={{height: "120px"}}>
                 <PieChart read = {read}
                 unread = {unread}

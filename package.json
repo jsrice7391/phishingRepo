@@ -36,6 +36,7 @@
     "passport-azure-ad": "^3.0.12",
     "powershell": "^2.3.0",
     "react-bootstrap": "^0.32.1",
+    "react-bootstrap-table": "^4.3.1",
     "restify": "^7.0.0",
     "restify-plugins": "^1.6.0",
     "sequelize": "^4.37.4"
