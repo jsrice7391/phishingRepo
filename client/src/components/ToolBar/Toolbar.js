@@ -23,14 +23,10 @@ export default class ToolBar extends React.Component {
                     <ToolbarTitle text = "Phishing Emails" syle={style} />
                 </ToolbarGroup>
                 <ToolbarGroup>
-                    <Link to="/compare">Compare</Link>
-                    
-                </ToolbarGroup>
-                     
-                </Toolbar>
-           
+                    <Link to="/compare">Compare</Link>        
+                </ToolbarGroup>       
+               </Toolbar>          
             </MuiThemeProvider>
-
         )
     }
 }
