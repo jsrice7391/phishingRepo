@@ -44,7 +44,11 @@ class Compare extends Component {
             searches: [],
             selected: []
         }
-         this._onRowSelection = this._onRowSelection.bind(this);
+
+    }
+
+    handleClick(e){
+        console.log(this.state.searches[e]);
     }
 
   handleToggle = (event, toggled) => {
@@ -53,12 +57,6 @@ class Compare extends Component {
       [event.target.name]: toggled,
     });
   };
-
-  _onRowSelection(key) {
-      console.log(key, this.state.searches[key])
-  }
-
-
 
   handleChange = (event) => {
       console.log("Here is what happened: " + event.target.value)
@@ -90,9 +88,7 @@ class Compare extends Component {
           fixedFooter={this.state.fixedFooter}
           selectable={this.state.selectable}
           multiSelectable={this.state.multiSelectable}
-          onRowSelection = {
-              this._onRowSelection
-          } >
+          onRowSelection = {(selected) => this.handleClick(selected)}>
         >
           <TableHeader
             displaySelectAll={this.state.showCheckboxes}
@@ -115,8 +111,7 @@ class Compare extends Component {
             displayRowCheckbox={this.state.showCheckboxes}
             deselectOnClickaway={this.state.deselectOnClickaway}
             showRowHover={this.state.showRowHover}
-            stripedRows={this.state.stripedRows}
-          >
+            stripedRows={this.state.stripedRows}>
             {this.state.searches.map( (row, index) => (
               <TableRow key={index}>
                 <TableRowColumn>{index}</TableRowColumn>
