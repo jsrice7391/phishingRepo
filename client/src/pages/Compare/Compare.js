@@ -28,26 +28,37 @@ const styles = {
  * A more complex example, allowing the table height to be set, and key boolean properties to be toggled.
  */
 class Compare extends Component {
-  state = {
-    fixedHeader: true,
-    fixedFooter: true,
-    stripedRows: false,
-    showRowHover: false,
-    selectable: true,
-    multiSelectable: true,
-    enableSelectAll: true,
-    deselectOnClickaway: true,
-    showCheckboxes: true,
-    height: '300px',
-    searches: []
-  };
+    constructor(){
+        super();
+        this.state = {
+            fixedHeader: true,
+            fixedFooter: true,
+            stripedRows: false,
+            showRowHover: false,
+            selectable: true,
+            multiSelectable: true,
+            enableSelectAll: true,
+            deselectOnClickaway: true,
+            showCheckboxes: true,
+            height: '300px',
+            searches: [],
+            selected: []
+        }
+         this._onRowSelection = this._onRowSelection.bind(this);
+    }
 
   handleToggle = (event, toggled) => {
-      console.log("Here is what happened: " + event.target.value)
+      console.log("Here is what happened: " + event)
     this.setState({
       [event.target.name]: toggled,
     });
   };
+
+  _onRowSelection(key) {
+      console.log(key, this.state.searches[key])
+  }
+
+
 
   handleChange = (event) => {
       console.log("Here is what happened: " + event.target.value)
@@ -79,7 +90,9 @@ class Compare extends Component {
           fixedFooter={this.state.fixedFooter}
           selectable={this.state.selectable}
           multiSelectable={this.state.multiSelectable}
-          onRowSelection={this.handleToggle}
+          onRowSelection = {
+              this._onRowSelection
+          } >
         >
           <TableHeader
             displaySelectAll={this.state.showCheckboxes}
