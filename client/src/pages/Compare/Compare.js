@@ -42,26 +42,27 @@ class Compare extends Component {
             showCheckboxes: true,
             height: '300px',
             searches: [],
-            selected: []
+            selectedRows:[],
+            first: null,
+            second: null
         }
-
+      this._onRowSelection = this._onRowSelection.bind(this);
     }
 
-    handleClick(e){
-        console.log(this.state.searches[e]);
-    }
+  _onRowSelection(rows) {
+    this.state.first === null ? this.setState({first: this.state.searches[rows]}) : this.setState({second: this.state.searches[rows]})
+     this.setState({
+         selectedRows: [...this.state.selectedRows, this.state.searches[rows]]
+       },
+       () => {
+         this.tableBody.setState({
+           selectedRows: rows
+         });
+       }
+     );
+  }
 
-  handleToggle = (event, toggled) => {
-      console.log("Here is what happened: " + event)
-    this.setState({
-      [event.target.name]: toggled,
-    });
-  };
 
-  handleChange = (event) => {
-      console.log("Here is what happened: " + event.target.value)
-    this.setState({height: event.target.value});
-  };
 
   componentWillMount(){
       this.getSearches();
@@ -77,41 +78,19 @@ class Compare extends Component {
       }
 
   render() {
+    let {selectedRows, searches, first, second} = this.state
     return (
-
-
-        <MuiThemeProvider>
+      <MuiThemeProvider>
       <div>
-        <Table
-          height={this.state.height}
-          fixedHeader={this.state.fixedHeader}
-          fixedFooter={this.state.fixedFooter}
-          selectable={this.state.selectable}
-          multiSelectable={this.state.multiSelectable}
-          onRowSelection = {(selected) => this.handleClick(selected)}>
-        >
-          <TableHeader
-            displaySelectAll={this.state.showCheckboxes}
-            adjustForCheckbox={this.state.showCheckboxes}
-            enableSelectAll={this.state.enableSelectAll}
-          >
-            <TableRow>
-              <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{textAlign: 'center'}}>
-                Super Header
-              </TableHeaderColumn>
-            </TableRow>
-            <TableRow>
-              <TableHeaderColumn tooltip="ID" style={{width:"10px"}}>ID</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Name">Title of Search</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Status">Date</TableHeaderColumn>
-              <TableHeaderColumn tooltip="Number of users">Total</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody
-            displayRowCheckbox={this.state.showCheckboxes}
-            deselectOnClickaway={this.state.deselectOnClickaway}
-            showRowHover={this.state.showRowHover}
-            stripedRows={this.state.stripedRows}>
+      <Table multiSelectable onRowSelection={this._onRowSelection}>
+            <TableHeader>
+              <TableRow>
+                <TableHeaderColumn>c1</TableHeaderColumn>
+                <TableHeaderColumn>c2</TableHeaderColumn>
+                <TableHeaderColumn>c3</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody showRowHover ref={(tableBody) => { this.tableBody = tableBody; }}>
             {this.state.searches.map( (row, index) => (
               <TableRow key={index}>
                 <TableRowColumn>{index}</TableRowColumn>
@@ -122,7 +101,14 @@ class Compare extends Component {
               ))}
           </TableBody>
         </Table>
+
       </div>
+
+     {first !== null ? <div><h3>{first.title}</h3></div> : <div><h3>Please select a second</h3></div>}
+
+      {second !== null ? <div><h3>{second.title}</h3></div> : <div><h3>Please select a second</h3></div>}
+
+
       </MuiThemeProvider>
     );
   }
