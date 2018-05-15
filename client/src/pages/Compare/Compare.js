@@ -50,6 +50,7 @@ class Compare extends Component {
     }
 
   _onRowSelection(rows) {
+    console.log(this.state.searches[rows])
     this.state.first === null ? this.setState({first: this.state.searches[rows]}) : this.setState({second: this.state.searches[rows]})
      this.setState({
          selectedRows: [...this.state.selectedRows, this.state.searches[rows]]
