@@ -15,9 +15,15 @@
     "react-csv": "^1.0.14",
     "react-dom": "^16.4.1",
     "react-icons": "^2.2.7",
+<<<<<<< HEAD
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "underscore": "^1.9.1"
+=======
+    "react-router-dom": "^4.1.2",
+    "react-scripts": "1.1.1",
+    "underscore": "^1.9.0"
+>>>>>>> 568eebf3d9f268cac6686be8e779f8e725b3eba9
   },
   "scripts": {
     "start": "react-scripts start",
