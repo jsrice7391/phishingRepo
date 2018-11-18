@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node server.js",
     "client": "node scripts/start-client.js",
-    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "start": "npm run client",
     "build": "node scripts/build.js",
     "seed": "node scripts/seedDB.js",
     "test": "mocha",
@@ -19,7 +19,7 @@
     "chai-http": "^4.0.0",
     "concurrently": "^3.5.1",
     "mocha": "^5.0.5",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.17.5"
   },
   "dependencies": {
     "axios": "^0.16.2",
