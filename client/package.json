@@ -21,7 +21,7 @@
     "underscore": "^1.9.1"
 =======
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.1.1",
+    "react-scripts": "2.0.0",
     "underscore": "^1.9.0"
 >>>>>>> 568eebf3d9f268cac6686be8e779f8e725b3eba9
   },
